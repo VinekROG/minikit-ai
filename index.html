@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>minikit-ai — private documents, private AI</title>
+<meta name="description" content="Ask questions about your own documents without uploading them anywhere. Runs entirely on your own computer. Windows, no administrator rights.">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="minikit-ai — private documents, private AI">
+<meta property="og:description" content="A local RAG that never touches the internet. Windows, no admin rights, one file.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#9095;</text></svg>">
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111823; --line:#1e2936; --fg:#e6edf3;
+    --dim:#8b98a5; --ok:#3fb950; --warn:#d29922; --accent:#58a6ff;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#ffffff; --panel:#f6f8fa; --line:#d0d7de; --fg:#1f2328;
+           --dim:#59636e; --ok:#1a7f37; --warn:#9a6700; --accent:#0969da; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 20px 80px}
+  h1{font-size:2.4rem;margin:0 0 .2em;letter-spacing:-.02em}
+  h2{font-size:1.35rem;margin:2.4em 0 .6em;letter-spacing:-.01em}
+  .sub{color:var(--dim);font-size:1.1rem;margin:0 0 1.6em}
+  .pill{display:inline-block;padding:.15em .6em;border:1px solid var(--line);
+    border-radius:999px;font-size:.8rem;color:var(--dim);margin-right:.4em}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:1.1rem 1.3rem;margin:1rem 0}
+  .card h3{margin:0 0 .4em;font-size:1.05rem}
+  .card p{margin:0;color:var(--dim)}
+  ol,ul{padding-left:1.3em}
+  li{margin:.35em 0}
+  code{background:var(--panel);border:1px solid var(--line);border-radius:5px;
+    padding:.12em .4em;font-size:.88em;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:.9rem 1rem;overflow-x:auto;font-size:.9em;
+    font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  pre code{background:none;border:none;padding:0}
+  a{color:var(--accent)}
+  .btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;
+    padding:.65em 1.4em;border-radius:8px;font-weight:600;margin-right:.5em}
+  .btn.sec{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.95em}
+  th,td{text-align:left;padding:.55em .7em;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--dim);font-weight:600;font-size:.85em;text-transform:uppercase;letter-spacing:.04em}
+  .yes{color:var(--ok);font-weight:600}
+  .no{color:#f85149;font-weight:600}
+  footer{margin-top:4em;padding-top:1.5em;border-top:1px solid var(--line);color:var(--dim);font-size:.9em}
+  .langs a{margin-right:.9em;display:inline-block}
+  .note{border-left:3px solid var(--warn);padding:.1em 0 .1em 1em;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>minikit-ai</h1>
+  <p class="sub">Ask questions about your own documents. Nothing is uploaded. Nothing leaves your computer.</p>
+
+  <p>
+    <span class="pill">Windows 10/11</span>
+    <span class="pill">No administrator rights</span>
+    <span class="pill">One file</span>
+    <span class="pill">Works offline</span>
+    <span class="pill">Open source models</span>
+  </p>
+
+  <p>
+    <a class="btn" href="https://github.com/OWNER/minikit-ai/releases/latest">Download the installer</a>
+    <a class="btn sec" href="https://github.com/OWNER/minikit-ai">Project page</a>
+  </p>
+
+  <h2>What it does</h2>
+  <p>You point it at a folder of documents — PDFs, Word files, Markdown, plain text. It reads
+  them, splits them into chunks, and computes a numeric fingerprint for each chunk using a
+  local AI model. Later you type a question in normal language; it finds the passages that
+  matter and writes an answer <em>citing them</em>.</p>
+  <p>All of that happens on your machine. There is no account, no API key, no upload and no
+  subscription.</p>
+
+  <h2>Why it is hard for anyone else to copy</h2>
+  <table>
+    <tr><th>Threat</th><th>What stops it</th></tr>
+    <tr><td>A web page you have open reads your documents</td><td class="yes">Blocked</td></tr>
+    <tr><td>A site tricks the program into talking to the internet</td><td class="yes">Blocked</td></tr>
+    <tr><td>Someone copies the source code</td><td class="yes">Not published</td></tr>
+    <tr><td>Someone extracts the interface from the binary</td><td class="yes">Encrypted</td></tr>
+    <tr><td>Your data sits readable in a folder</td><td class="no">No — see below</td></tr>
+  </table>
+  <p>Every outbound connection is intercepted by a gate that only allows the local
+  loopback address. If anything — a dependency, a poisoned document, a bug — even tries to
+  reach the outside, the connection is refused, the in-memory session is wiped and the
+  attempt is written to an audit log. It is not a setting you can forget to turn on.</p>
+
+  <h2>Honest limits</h2>
+  <ul>
+    <li>The installer is <strong>not code-signed</strong>, so Windows SmartScreen will warn
+    you the first time. Click <em>More info → Run anyway</em>. It is unsigned because the
+    author has no signing certificate.</li>
+    <li>The database of your documents is a plain file in your user folder. It is protected
+    by your Windows account, not by encryption.</li>
+    <li>It is a search tool, not a reasoning engine. It quotes what your documents say.</li>
+    <li>Answers can be wrong. Always check the cited passages.</li>
+  </ul>
+
+  <h2>Install in four steps</h2>
+  <pre><code>1.  Install Ollama          https://ollama.com/download
+2.  Download two models      ollama pull nomic-embed-text
+                             ollama pull qwen2.5:0.5b
+3.  Run the installer        minikit-ai-0.1.0-setup.exe   (no admin needed)
+4.  Launch it                Start menu → minikit-ai</code></pre>
+  <p>The browser opens automatically. Drop a file in, ask a question.</p>
+
+  <h2>For developers</h2>
+  <p>The source code is not part of this repository. If you want to study or reuse the
+  implementation, the author is open to discussing it.</p>
+
+  <h2>Read it in your language</h2>
+  <p class="langs">
+    <a href="README.md">English</a>
+    <a href="README.es.md">Español</a>
+    <a href="README.fr.md">Français</a>
+    <a href="README.pt.md">Português</a>
+    <a href="README.zh.md">中文</a>
+    <a href="README.hi.md">हिन्दी</a>
+    <a href="README.ar.md">العربية</a>
+  </p>
+
+  <footer>
+    <p>Released under the terms in <a href="LICENSE">LICENSE</a>.
+    Security issues: see <a href="SECURITY.md">SECURITY.md</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>

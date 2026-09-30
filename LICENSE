@@ -1,0 +1,66 @@
+minikit-ai — terms of use
+==========================
+
+Last updated: 2026-09-29
+
+1. WHAT IS LICENSED
+-------------------
+
+This repository contains documentation and web pages (the files `*.md` and
+`index.html`).
+
+Those files are licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0). You may share and adapt them for any
+purpose, including commercially, as long as you give credit.
+
+Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+2. WHAT IS NOT LICENSED
+-----------------------
+
+The source code of minikit-ai is NOT published in this repository and is NOT
+covered by any open-source licence. It is proprietary.
+
+The compiled program (`minikit-ai.exe` and the installer
+`minikit-ai-<version>-setup.exe`, distributed through Releases) is also
+proprietary and is provided to you as a binary only.
+
+You may:
+
+  - download, install and use it, on any number of computers you own or are
+    authorised to administer
+  - use it for any purpose, including commercial work
+  - keep using it forever, offline, with no telemetry and no account
+
+You may NOT:
+
+  - copy, publish or redistribute the binaries, in whole or in part, modified
+    or unmodified, except by linking to the official Releases page
+  - decompile, disassemble, unpack or otherwise attempt to recover the source
+    code or the encrypted assets from the binaries, except to the extent that
+    such restriction is unenforceable under the law that applies to you
+  - remove or obscure the authorship notices
+
+3. NO WARRANTY
+-------------
+
+The program is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and non-infringement.
+
+In no event shall the author be liable for any claim, damages or other
+liability arising from, out of, or in connection with the program or its use.
+
+4. YOUR DATA
+------------
+
+The program is designed so that it cannot transmit your documents anywhere.
+That is a technical property of how it is built, described in SECURITY.md and
+in the README. It is not a contractual promise, and it is not a substitute for
+your own judgement about the sensitivity of your files.
+
+5. REPORTING PROBLEMS
+---------------------
+
+Security issues: see SECURITY.md.
+Other problems: open an issue on the project page.

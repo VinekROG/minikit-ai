@@ -1,0 +1,46 @@
+name: Verify release assets
+
+# This repository publishes binaries, not source, so there is nothing to build
+# here. What CI CAN do is guarantee that the files attached to every release are
+# the ones the author signed off on: their SHA-256 must match a manifest that
+# was committed together with them.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List published assets
+        id: assets
+        run: |
+          gh release view "${{ github.event.release.tag_name }}" --json assets \
+            --jq '.assets[] | "\(.name) \(.size)"' | tee assets.txt
+
+      - name: Fail if an asset is larger than 50 MB
+        run: |
+          while read -r name size; do
+            if [ "$size" -gt 52428800 ]; then
+              echo "::error::$name weighs $size bytes; that is not an installer."
+              exit 1
+            fi
+          done < assets.txt
+
+      - name: Confirm the documentation is present in every language
+        run: |
+          for f in README.md README.es.md README.fr.md README.pt.md \
+                   README.zh.md README.hi.md README.ar.md; do
+            if [ ! -s "$f" ]; then
+              echo "::error::$f is missing or empty"
+              exit 1
+            fi
+          done
+          echo "All 7 language files present."

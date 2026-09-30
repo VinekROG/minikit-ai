@@ -1,0 +1,39 @@
+name: Suggest a feature
+description: Propose something minikit-ai should be able to do
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project is built by one person. Realistic, focused suggestions get
+        implemented; sprawling redesigns usually do not.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do that you cannot?
+      description: Describe the situation, not the solution.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What would it involve?
+      options:
+        - Reading or indexing more document formats
+        - A better answer, or faster answers
+        - Something about how documents are stored
+        - Something about installation or updates
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: machine
+    attributes:
+      label: Your machine
+      description: |
+        This project is tuned for old, modest hardware. Knowing yours helps
+        decide whether a request is realistic.
+        Example: "i3 from 2013, 6 GB RAM, no graphics card, Windows 10"

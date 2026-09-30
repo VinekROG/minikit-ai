@@ -1,0 +1,24 @@
+# Files and folders Git should never track in this repository.
+# The repository holds documentation and a landing page only; there is no build
+# output and no dependency to install.
+
+# Pages build output, if you ever switch to a generator
+/_site/
+/.jekyll-cache/
+/.jekyll-metadata
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Anything that could look like a secret. It costs nothing to have these
+# ignored, and it is embarrassing to commit a token by accident.
+*.env
+.env*
+*.key
+*.pem
+secrets/

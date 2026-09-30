@@ -1,0 +1,46 @@
+name: Something is not working
+description: Report a problem with the program
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste confidential documents here.** Describe the problem with
+        words only.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `minikit-ai version`
+      placeholder: "minikit-ai 0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: step
+    attributes:
+      label: Where does it happen?
+      options:
+        - Installing
+        - Starting the program
+        - Indexing documents
+        - Asking a question
+        - Uninstalling
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `minikit-ai doctor`
+      description: Open Command Prompt, run `minikit-ai doctor`, paste the result.
+      render: shell
