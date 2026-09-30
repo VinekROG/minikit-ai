@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <License>eula</License>
 <ProjectSettings>
   <ProjectName>minikit-ai</ProjectName>
   <Title/>
   <RepositoryName>minikit-ai</RepositoryName>
-  <RepositoryUrl>https://github.com/OWNER/minikit-ai/issues</RepositoryUrl>
-  <License>minikit-ai — terms of use</License>
+  <RepositoryUrl>https://github.com/VinekROG/minikit-ai/issues</RepositoryUrl>
+  <License>minikit-ai â€” terms of use</License>
   <PromoteOnStart>false</PromoteOnStart>
 </ProjectSettings>

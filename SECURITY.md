@@ -40,8 +40,20 @@ that fail if the protection is removed.
 | Clickjacking, injected scripts | A strict `Content-Security-Policy` with `default-src 'none'`, `frame-ancestors 'none'`, plus `nosniff`, `X-Frame-Options: DENY` and `no-referrer`. |
 | Denial of service | Per-client request budgets with a tighter budget for the chat endpoint, a hard cap on concurrent generations, capped request bodies and capped question length. |
 | Memory disclosure | `pprof` profiling is never enabled in hosted mode. |
-| Extracting the interface from the binary | Templates, CSS and JavaScript are stored AES-256-GCM encrypted inside the executable and decrypted into memory at run time. |
+| Extracting the interface from the binary | Templates, CSS and JavaScript are stored AES-256-GCM encrypted inside the executable and decrypted into memory at run time. The development passphrase is not compiled into release builds at all. |
 | Copying the source code | The source code is not published in this repository. |
+| Copying the program | The installer's terms forbid redistributing or reverse-engineering the binaries; see `LICENSE`. |
+
+## What is *not* defended
+
+Stated plainly, because pretending otherwise would be the worst thing this page
+could do.
+
+| | |
+|---|---|
+| **Function and package names are readable** | Go keeps them in every binary because the runtime needs them for panic stack traces. The tool that renames them (garble) produces binaries that Windows Defender removes as `Trojan:Win32/Gracing.I`, so it is not used for distribution. An attacker learns the *shape* of the program, not the code. |
+| **The encryption key is in the binary** | Assets are decrypted at run time, so the key must be present. This raises the cost of extraction; it is not DRM. Someone who patches the executable can read the interface at run time. |
+| **The installer is not code-signed** | The origin of the binary cannot be cryptographically verified, and SmartScreen warns on first run. A signing certificate would fix this and would also unlock identifier obfuscation. |
 
 ## Known weaknesses
 
@@ -51,6 +63,7 @@ information.
 | | |
 |---|---|
 | **The document database is not encrypted at rest** | Your documents are stored in a SQLite file under your user profile. Anyone with access to your Windows account can read it. Encryption at rest is not implemented. |
+| **The asset key is inside the executable** | The interface must be decryptable at run time, so the key ships with the program. This stops casual extraction, not a determined reverse engineer. |
 | **The installer is not code-signed** | There is no signing certificate, so Windows SmartScreen warns on first run and the binary's origin cannot be cryptographically verified. |
 | **A local attacker with code execution can bypass everything** | The anti-exfiltration gate lives inside the program. Malware that can read process memory or inject into it is not stopped by this. |
 | **Prompt injection inside your own documents** | If one of the documents you index contains text designed to manipulate the model, the model can be influenced. It still cannot reach the network. |

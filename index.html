@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>minikit-ai — private documents, private AI</title>
+<title>minikit-ai â€” private documents, private AI</title>
 <meta name="description" content="Ask questions about your own documents without uploading them anywhere. Runs entirely on your own computer. Windows, no administrator rights.">
 <meta name="color-scheme" content="dark light">
-<meta property="og:title" content="minikit-ai — private documents, private AI">
+<meta property="og:title" content="minikit-ai â€” private documents, private AI">
 <meta property="og:description" content="A local RAG that never touches the internet. Windows, no admin rights, one file.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#9095;</text></svg>">
@@ -69,12 +69,12 @@
   </p>
 
   <p>
-    <a class="btn" href="https://github.com/OWNER/minikit-ai/releases/latest">Download the installer</a>
-    <a class="btn sec" href="https://github.com/OWNER/minikit-ai">Project page</a>
+    <a class="btn" href="https://github.com/VinekROG/minikit-ai/releases/latest">Download the installer</a>
+    <a class="btn sec" href="https://github.com/VinekROG/minikit-ai">Project page</a>
   </p>
 
   <h2>What it does</h2>
-  <p>You point it at a folder of documents — PDFs, Word files, Markdown, plain text. It reads
+  <p>You point it at a folder of documents â€” PDFs, Word files, Markdown, plain text. It reads
   them, splits them into chunks, and computes a numeric fingerprint for each chunk using a
   local AI model. Later you type a question in normal language; it finds the passages that
   matter and writes an answer <em>citing them</em>.</p>
@@ -88,17 +88,17 @@
     <tr><td>A site tricks the program into talking to the internet</td><td class="yes">Blocked</td></tr>
     <tr><td>Someone copies the source code</td><td class="yes">Not published</td></tr>
     <tr><td>Someone extracts the interface from the binary</td><td class="yes">Encrypted</td></tr>
-    <tr><td>Your data sits readable in a folder</td><td class="no">No — see below</td></tr>
+    <tr><td>Your data sits readable in a folder</td><td class="no">No â€” see below</td></tr>
   </table>
   <p>Every outbound connection is intercepted by a gate that only allows the local
-  loopback address. If anything — a dependency, a poisoned document, a bug — even tries to
+  loopback address. If anything â€” a dependency, a poisoned document, a bug â€” even tries to
   reach the outside, the connection is refused, the in-memory session is wiped and the
   attempt is written to an audit log. It is not a setting you can forget to turn on.</p>
 
   <h2>Honest limits</h2>
   <ul>
     <li>The installer is <strong>not code-signed</strong>, so Windows SmartScreen will warn
-    you the first time. Click <em>More info → Run anyway</em>. It is unsigned because the
+    you the first time. Click <em>More info â†’ Run anyway</em>. It is unsigned because the
     author has no signing certificate.</li>
     <li>The database of your documents is a plain file in your user folder. It is protected
     by your Windows account, not by encryption.</li>
@@ -111,7 +111,7 @@
 2.  Download two models      ollama pull nomic-embed-text
                              ollama pull qwen2.5:0.5b
 3.  Run the installer        minikit-ai-0.1.0-setup.exe   (no admin needed)
-4.  Launch it                Start menu → minikit-ai</code></pre>
+4.  Launch it                Start menu â†’ minikit-ai</code></pre>
   <p>The browser opens automatically. Drop a file in, ask a question.</p>
 
   <h2>For developers</h2>
@@ -121,12 +121,12 @@
   <h2>Read it in your language</h2>
   <p class="langs">
     <a href="README.md">English</a>
-    <a href="README.es.md">Español</a>
-    <a href="README.fr.md">Français</a>
-    <a href="README.pt.md">Português</a>
-    <a href="README.zh.md">中文</a>
-    <a href="README.hi.md">हिन्दी</a>
-    <a href="README.ar.md">العربية</a>
+    <a href="README.es.md">EspaÃ±ol</a>
+    <a href="README.fr.md">FranÃ§ais</a>
+    <a href="README.pt.md">PortuguÃªs</a>
+    <a href="README.zh.md">ä¸­æ–‡</a>
+    <a href="README.hi.md">à¤¹à¤¿à¤¨à¥à¤¦à¥€</a>
+    <a href="README.ar.md">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</a>
   </p>
 
   <footer>
