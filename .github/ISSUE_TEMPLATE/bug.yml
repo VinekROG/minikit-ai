@@ -13,7 +13,7 @@ body:
     attributes:
       label: Version
       description: Output of `minikit-ai version`
-      placeholder: "minikit-ai 0.1.0"
+      placeholder: "minikit-ai 1.0.0-beta"
     validations:
       required: true
 
@@ -43,4 +43,3 @@ body:
     attributes:
       label: Output of `minikit-ai doctor`
       description: Open Command Prompt, run `minikit-ai doctor`, paste the result.
-      render: shell
